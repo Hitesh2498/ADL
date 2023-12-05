@@ -1,0 +1,99 @@
+<!-- 
+    Implement shopping cart functionality using javascript
+    Add features like adding and removing items and updating the total price dynamically
+ -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Shopping Cart</title>
+     <style>
+         /* Add some basic styling */
+         body {
+             font-family: Arial, sans-serif;
+             margin: 20px;
+         }
+         #cart {
+             border: 1px solid #ccc;
+             padding: 10px;
+             max-width: 400px;
+         }
+         #items {
+             list-style-type: none;
+             padding: 0;
+         }
+         .item {
+             margin-bottom: 5px;
+         }
+     </style>
+ </head>
+ <body>
+ 
+     <h1>Shopping Cart</h1>
+ 
+     <div id="cart">
+         <h2>Your Cart</h2>
+         <ul id="items"></ul>
+         <p>Total: $<span id="total">0.00</span></p>
+     </div>
+ 
+     <h2>Available Items</h2>
+     <div>
+         <button onclick="addItem('Item 1', 10.99)">Add Item 1 - $10.99</button>
+         <button onclick="addItem('Item 2', 20.49)">Add Item 2 - $20.49</button>
+         <button onclick="addItem('Item 3', 5.99)">Add Item 3 - $5.99</button>
+     </div>
+ 
+     <script>
+         // Shopping cart data
+         let cart = [];
+         let total = 0;
+ 
+         // Function to add item to the cart
+         function addItem(name, price) {
+             const item = { name, price };
+             cart.push(item);
+             updateCart();
+         }
+ 
+         // Function to remove item from the cart
+         function removeItem(index) {
+             cart.splice(index, 1);
+             updateCart();
+         }
+ 
+         // Function to update the cart and total
+         function updateCart() {
+             const itemsList = document.getElementById('items');
+             const totalElement = document.getElementById('total');
+ 
+             // Clear previous items
+             itemsList.innerHTML = '';
+ 
+             // Update the items list and calculate the total
+             total = 0;
+             cart.forEach((item, index) => {
+                 const listItem = document.createElement('li');
+                 listItem.classList.add('item');
+                 listItem.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+ 
+                 const removeButton = document.createElement('button');
+                 removeButton.textContent = 'Remove';
+                 removeButton.onclick = () => removeItem(index);
+ 
+                 listItem.appendChild(removeButton);
+                 itemsList.appendChild(listItem);
+ 
+                 total += item.price;
+             });
+ 
+             // Update the total amount
+             totalElement.textContent = total.toFixed(2);
+         }
+     </script>
+ 
+ </body>
+ </html>
+ 

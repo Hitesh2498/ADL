@@ -1,0 +1,87 @@
+<!-- 
+    Use javascript to dynamically update content on a webpage
+    Create a simple image slider using jQuery
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        #slider-container {
+            width: 400px;
+            overflow: hidden;
+        }
+        #image-slider {
+            width: 2000px; /* Set it to accommodate all images */
+            transition: transform 0.5s ease-in-out;
+        }
+        .slider-image {
+            float: left;
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="slider-container">
+    <div id="image-slider">
+        <img src="/Image1.png" alt="Image 1" class="slider-image">
+        <img src="/Image2.png" alt="Image 2" class="slider-image">
+        <img src="/image3.png" alt="Image 3" class="slider-image">
+        <!-- Add more images as needed -->
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        // Set initial variables
+        var currentIndex = 0;
+        var slider = $('#image-slider');
+
+        // Function to update the slider
+        function updateSlider() {
+            var newPosition = currentIndex * -400; // 400 is the width of each image
+            slider.css('transform', 'translateX(' + newPosition + 'px)');
+        }
+
+        // Function to show the next image
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % $('.slider-image').length;
+            updateSlider();
+        }
+
+        // Function to show the previous image
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + $('.slider-image').length) % $('.slider-image').length;
+            updateSlider();
+        }
+
+        // Set interval for auto-sliding (optional)
+        var interval = setInterval(nextImage, 2000); // Change 2000 to desired interval in milliseconds
+
+        // Pause auto-sliding on mouse hover (optional)
+        $('#slider-container').hover(
+            function() {
+                clearInterval(interval);
+            },
+            function() {
+                interval = setInterval(nextImage, 2000);
+            }
+        );
+
+        // Add event listeners for next and previous buttons
+        $('#next-btn').on('click', nextImage);
+        $('#prev-btn').on('click', prevImage);
+    });
+</script>
+
+<!-- Optional: Add next and previous buttons -->
+<button id="prev-btn">Previous</button>
+<button id="next-btn">Next</button>
+
+</body>
+</html>

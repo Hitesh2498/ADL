@@ -1,0 +1,37 @@
+- Retrval data 
+
+	go to repo  https://github.com/RishikeshMane/retrival_react
+
+	download zip file and extract it 
+
+	open new terminal in side folder 
+
+	do ls and npm i 
+
+    do npm start 
+
+    and app will start at http://localhost:3000
+
+	to do chnages go to server.js file and change only value pair not key 
+
+	to reflect changed stop and start terminal command again 
+
+
+- angular app repo link - https://github.com/RishikeshMane/angular_myapp
+
+	and just follow above step till npm i and do npm start 
+
+	it will start app on http://localhost:4200
+
+- design wedpage and demo nodejs app - we are doing react simple 
+
+	run command - npx create-react-app sk
+
+	and do npm start 
+
+	and app will start at http://localhost:3000
+
+- validatong book 
+
+	https://github.com/RishikeshMane/Restfull-Games-Api
+
